@@ -1,0 +1,104 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background: linear-gradient(
+        135deg,
+        #ff9a9e,
+        #FFAAB8,
+        #FF8FB7,
+        #E06B80
+    );
+    background-size: 400% 400%;
+    animation: gradientMove 12s ease infinite;
+}
+
+html, body {
+    height: 100%;
+}
+
+/* make svg and main canvas fill viewport responsively */
+#canvas {
+    display: block;
+    width: 100%;
+    height: 100vh;
+    opacity: 0;
+    filter: blur(15px);
+    transition:
+        opacity 2s ease,
+        filter 2.5s ease;
+}
+
+
+/* layar awal */
+#start {
+    position: fixed;
+    inset: 0;
+    background: #FFD8DF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 10;
+
+    opacity: 1;
+    transition: opacity 1.5s ease;
+}
+
+
+#start h1 {
+    color: black;
+    font-family: 'Georgia', serif;
+    font-size: clamp(1.25rem, 3.5vw, 2.5rem);
+}
+
+.flower-group {
+    animation: sway 4s ease-in-out infinite;
+    transform-origin: bottom center;
+}
+
+@keyframes sway {
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(2deg); }
+    100% { transform: rotate(0deg); }
+}
+
+#centerText {
+    position: fixed;
+    z-index: 5;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 900px;
+    white-space: pre-line;
+    text-align: center;
+    line-height: 1.15;
+    font-size: clamp(1rem, 4vw, 3rem);
+    font-family: 'Georgia', serif;
+    color: white;
+    text-shadow: 0 0 20px rgba(255,255,255,0.8);
+    opacity: 0;
+    filter: blur(10px);
+    transition:
+        opacity 2s ease,
+        filter 2s ease;
+    pointer-events: none;
+}
+@keyframes gradientMove {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+@media (max-width: 768px) {
+    #centerText {
+        top: 52%;
+        font-size: clamp(0.95rem, 5.5vw, 2rem);
+        padding: 0 1rem;
+        text-align: center;
+    }
+    #start {
+        padding: 0 1rem;
+    }
+}
